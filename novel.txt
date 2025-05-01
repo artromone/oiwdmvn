@@ -1,0 +1,62 @@
+// Импортируем ресурсы
+import "common_assets.vns";
+
+// Объявляем персонажей
+character Alice {
+    name = "Алиса";
+}
+character Bob {
+    name = "Боб";
+}
+
+// Начало сцены
+scene_start Introduction;
+
+// Фон и музыка
+background "forest_day.jpg";
+music "calm_theme.mp3";
+
+// Описание
+narrate("Лес был наполнен мягким светом утреннего солнца.");
+
+// Диалог
+Alice.say("Какой сегодня прекрасный день, правда?");
+Bob.say("Да, погода просто замечательная!");
+
+// Ветка выбора
+choice {
+    "Пойти по тропинке" {
+        narrate("Вы решаете прогуляться по тропинке.");
+        set Alice.mood = "curious";
+        Alice.say("Интересно, куда она ведёт?");
+    }
+    "Остаться на поляне" {
+        narrate("Вы решаете остаться на поляне и отдохнуть.");
+        set Bob.mood = "relaxed";
+        Bob.say("Иногда полезно просто посидеть и послушать птиц.");
+    }
+}
+
+// Условие
+if (Alice.mood == "curious") {
+    narrate("Алиса с интересом осматривает окрестности.");
+} else {
+    narrate("Боб наслаждается спокойствием.");
+}
+
+// Сохранение
+savepoint "После выбора";
+
+// Переход к другой сцене
+goto NextScene;
+
+// Конец сцены
+scene_end;
+
+// Следующая сцена
+scene_start NextScene;
+background "forest_path.jpg";
+music "mystery_theme.mp3";
+narrate("Вы углубляетесь в лес, где всё кажется загадочнее...");
+scene_end;
+
