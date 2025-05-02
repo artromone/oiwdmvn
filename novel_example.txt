@@ -1,52 +1,57 @@
-scene_start Introduction;
+scene_start "intro"
+
 character Alice
 {
-    name = "Алиса";
+    name "Алиса"
+    var mood "neutral"
 }
 character Bob
 {
-    name = "Боб";
+    name "Боб"
+    relaxed 5
 }
-background "forest_day.jpg";
-music "calm_theme.mp3";
+background "forest_day.jpg"
+music "calm_theme.mp3"
 
-narrate("Лес был наполнен мягким светом утреннего солнца.");
+narrate "Лес был наполнен мягким светом утреннего солнца."
 
-Alice.say("Какой сегодня прекрасный день, правда?");
-Bob.say("Да, погода просто замечательная!");
+Alice "Какой сегодня прекрасный день, правда?"
+Bob "Да, погода просто замечательная!"
+
+good_day false
 
 choice
 {
     "Пойти по тропинке"
     {
-        narrate("Вы решаете прогуляться по тропинке.");
-        set Alice.mood = "curious";
-        Alice.say("Интересно, куда она ведёт?");
+        narrate "Вы решаете прогуляться по тропинке."
+        Alice.mood "curious"
+        Alice "Интересно, куда она ведёт?"
     }
     "Остаться на поляне"
     {
-        narrate("Вы решаете остаться на поляне и отдохнуть.");
-        set Bob.mood = "relaxed";
-        Bob.say("Иногда полезно просто посидеть и послушать птиц.");
+        narrate "Вы решаете остаться на поляне и отдохнуть."
+        Bob.relaxed 15
+        Bob "Иногда полезно просто посидеть и послушать птиц."
     }
 }
 
-if (Alice.mood == "curious")
+if Alice.mood == "curious"
 {
-    narrate("Алиса с интересом осматривает окрестности.");
-    goto NextScene;
+    narrate "Алиса с интересом осматривает окрестности."
+    good_day true
+    goto "NextScene"
 }
 else
 {
-    narrate("Боб наслаждается спокойствием.");
+    narrate "Боб наслаждается спокойствием."
 }
 
-savepoint "После выбора";
-scene_end;
+savepoint "После выбора"
+scene_end
 
-scene_start NextScene;
-background "forest_path.jpg";
-music "mystery_theme.mp3";
-narrate("Вы углубляетесь в лес, где всё кажется загадочнее...");
-scene_end;
-
+scene_start "NextScene"
+background "forest_path.jpg"
+music "mystery_theme.mp3"
+narrate "Вы углубляетесь в лес, где всё кажется загадочнее..."
+scene_end

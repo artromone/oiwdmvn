@@ -39,10 +39,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitSoundStmt(VNScriptParser::SoundStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitCharacterDef(VNScriptParser::CharacterDefContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -55,7 +51,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitSayStmt(VNScriptParser::SayStmtContext *ctx) override {
+  virtual std::any visitDialogueStmt(VNScriptParser::DialogueStmtContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -63,27 +59,15 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitVarDecl(VNScriptParser::VarDeclContext *ctx) override {
+  virtual std::any visitVarAssign(VNScriptParser::VarAssignContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitSetStmt(VNScriptParser::SetStmtContext *ctx) override {
+  virtual std::any visitPropAssign(VNScriptParser::PropAssignContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitLvalue(VNScriptParser::LvalueContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitAssignOp(VNScriptParser::AssignOpContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitIfStmt(VNScriptParser::IfStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitBlock(VNScriptParser::BlockContext *ctx) override {
+  virtual std::any visitExpr(VNScriptParser::ExprContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -95,15 +79,15 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitParallelStmt(VNScriptParser::ParallelStmtContext *ctx) override {
+  virtual std::any visitBlock(VNScriptParser::BlockContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitFunctionDef(VNScriptParser::FunctionDefContext *ctx) override {
+  virtual std::any visitIfStmt(VNScriptParser::IfStmtContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitTryCatchStmt(VNScriptParser::TryCatchStmtContext *ctx) override {
+  virtual std::any visitCondition(VNScriptParser::ConditionContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -111,43 +95,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitTransitionStmt(VNScriptParser::TransitionStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitImportStmt(VNScriptParser::ImportStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitDebugBlock(VNScriptParser::DebugBlockContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitGotoStmt(VNScriptParser::GotoStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitAnimateStmt(VNScriptParser::AnimateStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitPlayStmt(VNScriptParser::PlayStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitWaitStmt(VNScriptParser::WaitStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitReturnStmt(VNScriptParser::ReturnStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitLogStmt(VNScriptParser::LogStmtContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitExpr(VNScriptParser::ExprContext *ctx) override {
     return visitChildren(ctx);
   }
 

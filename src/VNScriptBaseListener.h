@@ -34,9 +34,6 @@ public:
   virtual void enterMusicStmt(VNScriptParser::MusicStmtContext * /*ctx*/) override { }
   virtual void exitMusicStmt(VNScriptParser::MusicStmtContext * /*ctx*/) override { }
 
-  virtual void enterSoundStmt(VNScriptParser::SoundStmtContext * /*ctx*/) override { }
-  virtual void exitSoundStmt(VNScriptParser::SoundStmtContext * /*ctx*/) override { }
-
   virtual void enterCharacterDef(VNScriptParser::CharacterDefContext * /*ctx*/) override { }
   virtual void exitCharacterDef(VNScriptParser::CharacterDefContext * /*ctx*/) override { }
 
@@ -46,29 +43,20 @@ public:
   virtual void enterCharPropStmt(VNScriptParser::CharPropStmtContext * /*ctx*/) override { }
   virtual void exitCharPropStmt(VNScriptParser::CharPropStmtContext * /*ctx*/) override { }
 
-  virtual void enterSayStmt(VNScriptParser::SayStmtContext * /*ctx*/) override { }
-  virtual void exitSayStmt(VNScriptParser::SayStmtContext * /*ctx*/) override { }
+  virtual void enterDialogueStmt(VNScriptParser::DialogueStmtContext * /*ctx*/) override { }
+  virtual void exitDialogueStmt(VNScriptParser::DialogueStmtContext * /*ctx*/) override { }
 
   virtual void enterNarrateStmt(VNScriptParser::NarrateStmtContext * /*ctx*/) override { }
   virtual void exitNarrateStmt(VNScriptParser::NarrateStmtContext * /*ctx*/) override { }
 
-  virtual void enterVarDecl(VNScriptParser::VarDeclContext * /*ctx*/) override { }
-  virtual void exitVarDecl(VNScriptParser::VarDeclContext * /*ctx*/) override { }
+  virtual void enterVarAssign(VNScriptParser::VarAssignContext * /*ctx*/) override { }
+  virtual void exitVarAssign(VNScriptParser::VarAssignContext * /*ctx*/) override { }
 
-  virtual void enterSetStmt(VNScriptParser::SetStmtContext * /*ctx*/) override { }
-  virtual void exitSetStmt(VNScriptParser::SetStmtContext * /*ctx*/) override { }
+  virtual void enterPropAssign(VNScriptParser::PropAssignContext * /*ctx*/) override { }
+  virtual void exitPropAssign(VNScriptParser::PropAssignContext * /*ctx*/) override { }
 
-  virtual void enterLvalue(VNScriptParser::LvalueContext * /*ctx*/) override { }
-  virtual void exitLvalue(VNScriptParser::LvalueContext * /*ctx*/) override { }
-
-  virtual void enterAssignOp(VNScriptParser::AssignOpContext * /*ctx*/) override { }
-  virtual void exitAssignOp(VNScriptParser::AssignOpContext * /*ctx*/) override { }
-
-  virtual void enterIfStmt(VNScriptParser::IfStmtContext * /*ctx*/) override { }
-  virtual void exitIfStmt(VNScriptParser::IfStmtContext * /*ctx*/) override { }
-
-  virtual void enterBlock(VNScriptParser::BlockContext * /*ctx*/) override { }
-  virtual void exitBlock(VNScriptParser::BlockContext * /*ctx*/) override { }
+  virtual void enterExpr(VNScriptParser::ExprContext * /*ctx*/) override { }
+  virtual void exitExpr(VNScriptParser::ExprContext * /*ctx*/) override { }
 
   virtual void enterChoiceStmt(VNScriptParser::ChoiceStmtContext * /*ctx*/) override { }
   virtual void exitChoiceStmt(VNScriptParser::ChoiceStmtContext * /*ctx*/) override { }
@@ -76,47 +64,20 @@ public:
   virtual void enterChoiceOption(VNScriptParser::ChoiceOptionContext * /*ctx*/) override { }
   virtual void exitChoiceOption(VNScriptParser::ChoiceOptionContext * /*ctx*/) override { }
 
-  virtual void enterParallelStmt(VNScriptParser::ParallelStmtContext * /*ctx*/) override { }
-  virtual void exitParallelStmt(VNScriptParser::ParallelStmtContext * /*ctx*/) override { }
+  virtual void enterBlock(VNScriptParser::BlockContext * /*ctx*/) override { }
+  virtual void exitBlock(VNScriptParser::BlockContext * /*ctx*/) override { }
 
-  virtual void enterFunctionDef(VNScriptParser::FunctionDefContext * /*ctx*/) override { }
-  virtual void exitFunctionDef(VNScriptParser::FunctionDefContext * /*ctx*/) override { }
+  virtual void enterIfStmt(VNScriptParser::IfStmtContext * /*ctx*/) override { }
+  virtual void exitIfStmt(VNScriptParser::IfStmtContext * /*ctx*/) override { }
 
-  virtual void enterTryCatchStmt(VNScriptParser::TryCatchStmtContext * /*ctx*/) override { }
-  virtual void exitTryCatchStmt(VNScriptParser::TryCatchStmtContext * /*ctx*/) override { }
+  virtual void enterCondition(VNScriptParser::ConditionContext * /*ctx*/) override { }
+  virtual void exitCondition(VNScriptParser::ConditionContext * /*ctx*/) override { }
 
   virtual void enterSavepointStmt(VNScriptParser::SavepointStmtContext * /*ctx*/) override { }
   virtual void exitSavepointStmt(VNScriptParser::SavepointStmtContext * /*ctx*/) override { }
 
-  virtual void enterTransitionStmt(VNScriptParser::TransitionStmtContext * /*ctx*/) override { }
-  virtual void exitTransitionStmt(VNScriptParser::TransitionStmtContext * /*ctx*/) override { }
-
-  virtual void enterImportStmt(VNScriptParser::ImportStmtContext * /*ctx*/) override { }
-  virtual void exitImportStmt(VNScriptParser::ImportStmtContext * /*ctx*/) override { }
-
-  virtual void enterDebugBlock(VNScriptParser::DebugBlockContext * /*ctx*/) override { }
-  virtual void exitDebugBlock(VNScriptParser::DebugBlockContext * /*ctx*/) override { }
-
   virtual void enterGotoStmt(VNScriptParser::GotoStmtContext * /*ctx*/) override { }
   virtual void exitGotoStmt(VNScriptParser::GotoStmtContext * /*ctx*/) override { }
-
-  virtual void enterAnimateStmt(VNScriptParser::AnimateStmtContext * /*ctx*/) override { }
-  virtual void exitAnimateStmt(VNScriptParser::AnimateStmtContext * /*ctx*/) override { }
-
-  virtual void enterPlayStmt(VNScriptParser::PlayStmtContext * /*ctx*/) override { }
-  virtual void exitPlayStmt(VNScriptParser::PlayStmtContext * /*ctx*/) override { }
-
-  virtual void enterWaitStmt(VNScriptParser::WaitStmtContext * /*ctx*/) override { }
-  virtual void exitWaitStmt(VNScriptParser::WaitStmtContext * /*ctx*/) override { }
-
-  virtual void enterReturnStmt(VNScriptParser::ReturnStmtContext * /*ctx*/) override { }
-  virtual void exitReturnStmt(VNScriptParser::ReturnStmtContext * /*ctx*/) override { }
-
-  virtual void enterLogStmt(VNScriptParser::LogStmtContext * /*ctx*/) override { }
-  virtual void exitLogStmt(VNScriptParser::LogStmtContext * /*ctx*/) override { }
-
-  virtual void enterExpr(VNScriptParser::ExprContext * /*ctx*/) override { }
-  virtual void exitExpr(VNScriptParser::ExprContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }

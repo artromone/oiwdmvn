@@ -19,8 +19,6 @@ NUMBER
 
 ID : [a-zA-Z_][a-zA-Z_0-9]* ;
 
-SEMICOLON: ';';
-
 // --- Топ-левел ---
 script
     : statement* EOF
@@ -31,49 +29,36 @@ statement
     | sceneEnd
     | backgroundStmt
     | musicStmt
-    | soundStmt
     | characterDef
-    | sayStmt
+    | dialogueStmt
     | narrateStmt
-    | varDecl
-    | setStmt
+    | varAssign
+    | propAssign
     | ifStmt
     | choiceStmt
-    | parallelStmt
-    | functionDef
-    | tryCatchStmt
     | savepointStmt
-    | transitionStmt
-    | importStmt
-    | debugBlock
     | gotoStmt
-    | animateStmt
-    | playStmt
-    | waitStmt
-    | returnStmt
-    | logStmt
     ;
 
+// Сцена
 sceneStart
-    : 'scene_start' ID SEMICOLON
+    : 'scene_start' STRING
     ;
 
 sceneEnd
-    : 'scene_end' SEMICOLON
+    : 'scene_end'
     ;
 
+// Фон и музыка
 backgroundStmt
-    : 'background' STRING SEMICOLON
+    : 'background' STRING
     ;
 
 musicStmt
-    : 'music' STRING SEMICOLON
+    : 'music' STRING
     ;
 
-soundStmt
-    : 'sound' STRING SEMICOLON
-    ;
-
+// Персонаж
 characterDef
     : 'character' ID '{' characterBody '}'
     ;
@@ -83,43 +68,40 @@ characterBody
     ;
 
 charPropStmt
-    : 'name' '=' STRING SEMICOLON
+    : ID STRING           // name "Алиса"
+    | ID NUMBER           // relaxed 5
+    | 'var' ID STRING     // var mood "neutral"
     ;
 
-sayStmt
-    : ID '.' 'say' '(' STRING ')' SEMICOLON
+// Диалог и нарратив
+dialogueStmt
+    : ID STRING           // Alice "Текст"
     ;
 
 narrateStmt
-    : 'narrate' '(' STRING ')' SEMICOLON
+    : 'narrate' STRING
     ;
 
-varDecl
-    : 'var' ID ('=' expr)? SEMICOLON
+// Объявление переменной
+varAssign
+    : ID expr             // good_day false
     ;
 
-setStmt
-    : 'set' lvalue assignOp expr SEMICOLON
+// Присваивание свойства
+propAssign
+    : ID '.' ID expr      // Alice.mood "curious"
     ;
 
-lvalue
-    : ID ('.' ID)?
+// Выражения
+expr
+    : STRING
+    | NUMBER
+    | 'true'
+    | 'false'
+    | ID
     ;
 
-assignOp
-    : '='
-    | '+='
-    | '-='
-    ;
-
-ifStmt
-    : 'if' '(' expr ')' block ('else' block)?
-    ;
-
-block
-    : '{' statement* '}'
-    ;
-
+// Выбор
 choiceStmt
     : 'choice' '{' choiceOption+ '}'
     ;
@@ -128,70 +110,25 @@ choiceOption
     : STRING block
     ;
 
-parallelStmt
-    : 'parallel' block
+block
+    : '{' statement* '}'
     ;
 
-functionDef
-    : 'function' ID '(' ')' SEMICOLON block
+// Условие
+ifStmt
+    : 'if' condition block ('else' block)?
     ;
 
-tryCatchStmt
-    : 'try' block 'catch' '(' ID ID ')' block
+condition
+    : ID ('.' ID)? '==' expr
     ;
 
+// Сохранение, переход
 savepointStmt
-    : 'savepoint' STRING SEMICOLON
-    ;
-
-transitionStmt
-    : 'transition' ID '(' expr ')' block
-    ;
-
-importStmt
-    : 'import' STRING SEMICOLON
-    ;
-
-debugBlock
-    : 'debug' block
+    : 'savepoint' STRING
     ;
 
 gotoStmt
-    : 'goto' ID SEMICOLON
+    : 'goto' STRING
     ;
 
-animateStmt
-    : 'animate' ID STRING SEMICOLON
-    ;
-
-playStmt
-    : 'play' musicStmt
-    ;
-
-waitStmt
-    : 'wait' '(' expr ')' SEMICOLON
-    ;
-
-returnStmt
-    : 'return' expr? SEMICOLON
-    ;
-
-logStmt
-    : 'log' '(' expr ')' SEMICOLON
-    ;
-
-// --- Выражения ---
-expr
-    : expr op=('*'|'/') expr
-    | expr op=('+'|'-') expr
-    | expr op=('>'|'<'|'>='|'<='|'=='|'!=') expr
-    | expr op='&&' expr
-    | expr op='||' expr
-    | '(' expr ')'
-    | lvalue
-    | NUMBER
-    | STRING
-    | ID '(' (expr (',' expr)*)? ')' // function call
-    | 'true'
-    | 'false'
-    ;
