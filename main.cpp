@@ -1,9 +1,9 @@
 #include "VNScriptLexer.h"
 #include "VNScriptParser.h"
 #include <antlr4-runtime.h>
-#include <antlr4-runtime/tree/Trees.h>
 #include <fstream>
 #include <iostream>
+#include <tree/Trees.h>
 #include <typeinfo>
 
 using namespace antlr4;
@@ -53,12 +53,12 @@ int main() {
   auto *tree = parser.script();
   std::cout << tree->toStringTree(&parser) << std::endl;
 
-  std::ofstream dotFile("tree.dot");
-  dotFile << "digraph ParseTree {\n";
-  std::map<tree::ParseTree *, int> ids;
-  printDotTree(tree, dotFile, ids, &parser);
-  dotFile << "}\n";
-  dotFile.close();
+  // std::ofstream dotFile("tree.dot");
+  // dotFile << "digraph ParseTree {\n";
+  // std::map<tree::ParseTree *, int> ids;
+  // printDotTree(tree, dotFile, ids, &parser);
+  // dotFile << "}\n";
+  // dotFile.close();
 
   return 0;
 }
