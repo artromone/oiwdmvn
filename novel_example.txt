@@ -3,55 +3,62 @@ scene_start "intro"
 character Alice
 {
     name "Алиса"
-    var mood "neutral"
+    s mood "neutral"
+    s surname "Вася"
+    i relaxed 9
+    b drunk false
 }
 character Bob
 {
     name "Боб"
-    relaxed 5
+    i relaxed 5
+    b relaxed_enough true
 }
 background "forest_day.jpg"
 music "calm_theme.mp3"
 
-narrate "Лес был наполнен мягким светом утреннего солнца."
+! "Лес был наполнен мягким светом утреннего солнца."
+@ "Но в нем таилась страшная тайна."
 
 Alice "Какой сегодня прекрасный день, правда?"
 Bob "Да, погода просто замечательная!"
 
-good_day false
+b good_day false
+s author_name "Artem"
 
 choice
 {
     "Пойти по тропинке"
     {
-        narrate "Вы решаете прогуляться по тропинке."
+        ! "Вы решаете прогуляться по тропинке."
         Alice.mood "curious"
         Alice "Интересно, куда она ведёт?"
     }
     "Остаться на поляне"
     {
-        narrate "Вы решаете остаться на поляне и отдохнуть."
+        ! "Вы решаете остаться на поляне и отдохнуть."
         Bob.relaxed 15
         Bob "Иногда полезно просто посидеть и послушать птиц."
     }
 }
 
-if Alice.mood == "curious"
+if Alice.mood == "curious" && (Bob.relaxed_enough == true || good_day == true)
 {
-    narrate "Алиса с интересом осматривает окрестности."
+    ! "Алиса с интересом осматривает окрестности."
     good_day true
     goto "NextScene"
 }
 else
 {
-    narrate "Боб наслаждается спокойствием."
+    author_name "Victor"
+    ! "Боб наслаждается спокойствием."
 }
 
 savepoint "После выбора"
 scene_end
 
 scene_start "NextScene"
-background "forest_path.jpg"
+background "bask/forest_path.jpg"
 music "mystery_theme.mp3"
-narrate "Вы углубляетесь в лес, где всё кажется загадочнее..."
+! "Вы углубляетесь в лес, где всё кажется загадочнее..."
 scene_end

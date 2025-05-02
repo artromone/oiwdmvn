@@ -32,6 +32,8 @@ statement
     | characterDef
     | dialogueStmt
     | narrateStmt
+    | centerTextStmt
+    | varDecl
     | varAssign
     | propAssign
     | ifStmt
@@ -60,17 +62,19 @@ musicStmt
 
 // Персонаж
 characterDef
-    : 'character' ID '{' characterBody '}'
+    : 'character' ID '{' characterProp+ '}'
     ;
 
-characterBody
-    : (charPropStmt)*
+characterProp
+    : 'name' STRING                // name "Имя"
+    | ('s' | 'string') ID STRING   // s mood "neutral"
+    | ('i' | 'int') ID NUMBER      // i relaxed 5
+    | ('b' | 'bool') ID boolValue  // b drunk false
     ;
 
-charPropStmt
-    : ID STRING           // name "Алиса"
-    | ID NUMBER           // relaxed 5
-    | 'var' ID STRING     // var mood "neutral"
+boolValue
+    : 'true'
+    | 'false'
     ;
 
 // Диалог и нарратив
@@ -79,25 +83,34 @@ dialogueStmt
     ;
 
 narrateStmt
-    : 'narrate' STRING
+    : '!' STRING          // ! "Текст нарратора"
     ;
 
-// Объявление переменной
+centerTextStmt
+    : '@' STRING          // @ "Текст посередине экрана"
+    ;
+
+varDecl
+    : ('s' | 'string') ID STRING   // s author_name "Artem"
+    | ('i' | 'int') ID NUMBER      // i counter 5
+    | ('b' | 'bool') ID boolValue  // b good_day false
+    ;
+
+// Присваивание переменной (без типа)
 varAssign
-    : ID expr             // good_day false
+    : ID expr                     // good_day true
     ;
 
-// Присваивание свойства
+// Присваивание свойства персонажа
 propAssign
-    : ID '.' ID expr      // Alice.mood "curious"
+    : ID '.' ID expr              // Alice.mood "curious"
     ;
 
 // Выражения
 expr
     : STRING
     | NUMBER
-    | 'true'
-    | 'false'
+    | boolValue
     | ID
     ;
 
@@ -120,6 +133,13 @@ ifStmt
     ;
 
 condition
+    : simpleCondition
+    | simpleCondition '&&' condition
+    | simpleCondition '||' condition
+    | '(' condition ')'
+    ;
+
+simpleCondition
     : ID ('.' ID)? '==' expr
     ;
 

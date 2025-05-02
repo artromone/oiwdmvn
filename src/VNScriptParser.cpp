@@ -54,67 +54,87 @@ void vnscriptParserInitialize() {
   auto staticData = std::make_unique<VNScriptParserStaticData>(
     std::vector<std::string>{
       "script", "statement", "sceneStart", "sceneEnd", "backgroundStmt", 
-      "musicStmt", "characterDef", "characterBody", "charPropStmt", "dialogueStmt", 
-      "narrateStmt", "varAssign", "propAssign", "expr", "choiceStmt", "choiceOption", 
-      "block", "ifStmt", "condition", "savepointStmt", "gotoStmt"
+      "musicStmt", "characterDef", "characterProp", "boolValue", "dialogueStmt", 
+      "narrateStmt", "centerTextStmt", "varDecl", "varAssign", "propAssign", 
+      "expr", "choiceStmt", "choiceOption", "block", "ifStmt", "condition", 
+      "simpleCondition", "savepointStmt", "gotoStmt"
     },
     std::vector<std::string>{
       "", "'scene_start'", "'scene_end'", "'background'", "'music'", "'character'", 
-      "'{'", "'}'", "'var'", "'narrate'", "'.'", "'true'", "'false'", "'choice'", 
-      "'if'", "'else'", "'=='", "'savepoint'", "'goto'"
+      "'{'", "'}'", "'name'", "'s'", "'string'", "'i'", "'int'", "'b'", 
+      "'bool'", "'true'", "'false'", "'!'", "'@'", "'.'", "'choice'", "'if'", 
+      "'else'", "'&&'", "'||'", "'('", "')'", "'=='", "'savepoint'", "'goto'"
     },
     std::vector<std::string>{
       "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
-      "", "", "COMMENT", "WS", "STRING", "NUMBER", "ID"
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "COMMENT", "WS", 
+      "STRING", "NUMBER", "ID"
     }
   );
   static const int32_t serializedATNSegment[] = {
-  	4,1,23,156,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	4,1,34,201,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
   	7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,
-  	14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,1,0,5,
-  	0,44,8,0,10,0,12,0,47,9,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-  	1,1,1,1,1,1,1,1,3,1,64,8,1,1,2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,1,5,1,5,1,
-  	5,1,6,1,6,1,6,1,6,1,6,1,6,1,7,5,7,84,8,7,10,7,12,7,87,9,7,1,8,1,8,1,8,
-  	1,8,1,8,1,8,1,8,3,8,96,8,8,1,9,1,9,1,9,1,10,1,10,1,10,1,11,1,11,1,11,
-  	1,12,1,12,1,12,1,12,1,12,1,13,1,13,1,14,1,14,1,14,4,14,117,8,14,11,14,
-  	12,14,118,1,14,1,14,1,15,1,15,1,15,1,16,1,16,5,16,128,8,16,10,16,12,16,
-  	131,9,16,1,16,1,16,1,17,1,17,1,17,1,17,1,17,3,17,140,8,17,1,18,1,18,1,
-  	18,3,18,145,8,18,1,18,1,18,1,18,1,19,1,19,1,19,1,20,1,20,1,20,1,20,0,
-  	0,21,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,0,1,2,
-  	0,11,12,21,23,154,0,45,1,0,0,0,2,63,1,0,0,0,4,65,1,0,0,0,6,68,1,0,0,0,
-  	8,70,1,0,0,0,10,73,1,0,0,0,12,76,1,0,0,0,14,85,1,0,0,0,16,95,1,0,0,0,
-  	18,97,1,0,0,0,20,100,1,0,0,0,22,103,1,0,0,0,24,106,1,0,0,0,26,111,1,0,
-  	0,0,28,113,1,0,0,0,30,122,1,0,0,0,32,125,1,0,0,0,34,134,1,0,0,0,36,141,
-  	1,0,0,0,38,149,1,0,0,0,40,152,1,0,0,0,42,44,3,2,1,0,43,42,1,0,0,0,44,
-  	47,1,0,0,0,45,43,1,0,0,0,45,46,1,0,0,0,46,48,1,0,0,0,47,45,1,0,0,0,48,
-  	49,5,0,0,1,49,1,1,0,0,0,50,64,3,4,2,0,51,64,3,6,3,0,52,64,3,8,4,0,53,
-  	64,3,10,5,0,54,64,3,12,6,0,55,64,3,18,9,0,56,64,3,20,10,0,57,64,3,22,
-  	11,0,58,64,3,24,12,0,59,64,3,34,17,0,60,64,3,28,14,0,61,64,3,38,19,0,
-  	62,64,3,40,20,0,63,50,1,0,0,0,63,51,1,0,0,0,63,52,1,0,0,0,63,53,1,0,0,
-  	0,63,54,1,0,0,0,63,55,1,0,0,0,63,56,1,0,0,0,63,57,1,0,0,0,63,58,1,0,0,
-  	0,63,59,1,0,0,0,63,60,1,0,0,0,63,61,1,0,0,0,63,62,1,0,0,0,64,3,1,0,0,
-  	0,65,66,5,1,0,0,66,67,5,21,0,0,67,5,1,0,0,0,68,69,5,2,0,0,69,7,1,0,0,
-  	0,70,71,5,3,0,0,71,72,5,21,0,0,72,9,1,0,0,0,73,74,5,4,0,0,74,75,5,21,
-  	0,0,75,11,1,0,0,0,76,77,5,5,0,0,77,78,5,23,0,0,78,79,5,6,0,0,79,80,3,
-  	14,7,0,80,81,5,7,0,0,81,13,1,0,0,0,82,84,3,16,8,0,83,82,1,0,0,0,84,87,
-  	1,0,0,0,85,83,1,0,0,0,85,86,1,0,0,0,86,15,1,0,0,0,87,85,1,0,0,0,88,89,
-  	5,23,0,0,89,96,5,21,0,0,90,91,5,23,0,0,91,96,5,22,0,0,92,93,5,8,0,0,93,
-  	94,5,23,0,0,94,96,5,21,0,0,95,88,1,0,0,0,95,90,1,0,0,0,95,92,1,0,0,0,
-  	96,17,1,0,0,0,97,98,5,23,0,0,98,99,5,21,0,0,99,19,1,0,0,0,100,101,5,9,
-  	0,0,101,102,5,21,0,0,102,21,1,0,0,0,103,104,5,23,0,0,104,105,3,26,13,
-  	0,105,23,1,0,0,0,106,107,5,23,0,0,107,108,5,10,0,0,108,109,5,23,0,0,109,
-  	110,3,26,13,0,110,25,1,0,0,0,111,112,7,0,0,0,112,27,1,0,0,0,113,114,5,
-  	13,0,0,114,116,5,6,0,0,115,117,3,30,15,0,116,115,1,0,0,0,117,118,1,0,
-  	0,0,118,116,1,0,0,0,118,119,1,0,0,0,119,120,1,0,0,0,120,121,5,7,0,0,121,
-  	29,1,0,0,0,122,123,5,21,0,0,123,124,3,32,16,0,124,31,1,0,0,0,125,129,
-  	5,6,0,0,126,128,3,2,1,0,127,126,1,0,0,0,128,131,1,0,0,0,129,127,1,0,0,
-  	0,129,130,1,0,0,0,130,132,1,0,0,0,131,129,1,0,0,0,132,133,5,7,0,0,133,
-  	33,1,0,0,0,134,135,5,14,0,0,135,136,3,36,18,0,136,139,3,32,16,0,137,138,
-  	5,15,0,0,138,140,3,32,16,0,139,137,1,0,0,0,139,140,1,0,0,0,140,35,1,0,
-  	0,0,141,144,5,23,0,0,142,143,5,10,0,0,143,145,5,23,0,0,144,142,1,0,0,
-  	0,144,145,1,0,0,0,145,146,1,0,0,0,146,147,5,16,0,0,147,148,3,26,13,0,
-  	148,37,1,0,0,0,149,150,5,17,0,0,150,151,5,21,0,0,151,39,1,0,0,0,152,153,
-  	5,18,0,0,153,154,5,21,0,0,154,41,1,0,0,0,8,45,63,85,95,118,129,139,144
+  	14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,
+  	21,2,22,7,22,2,23,7,23,1,0,5,0,50,8,0,10,0,12,0,53,9,0,1,0,1,0,1,1,1,
+  	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,72,8,1,1,2,
+  	1,2,1,2,1,3,1,3,1,4,1,4,1,4,1,5,1,5,1,5,1,6,1,6,1,6,1,6,4,6,89,8,6,11,
+  	6,12,6,90,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,3,7,106,
+  	8,7,1,8,1,8,1,9,1,9,1,9,1,10,1,10,1,10,1,11,1,11,1,11,1,12,1,12,1,12,
+  	1,12,1,12,1,12,1,12,1,12,1,12,3,12,128,8,12,1,13,1,13,1,13,1,14,1,14,
+  	1,14,1,14,1,14,1,15,1,15,1,15,1,15,3,15,142,8,15,1,16,1,16,1,16,4,16,
+  	147,8,16,11,16,12,16,148,1,16,1,16,1,17,1,17,1,17,1,18,1,18,5,18,158,
+  	8,18,10,18,12,18,161,9,18,1,18,1,18,1,19,1,19,1,19,1,19,1,19,3,19,170,
+  	8,19,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
+  	3,20,185,8,20,1,21,1,21,1,21,3,21,190,8,21,1,21,1,21,1,21,1,22,1,22,1,
+  	22,1,23,1,23,1,23,1,23,0,0,24,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,
+  	30,32,34,36,38,40,42,44,46,0,4,1,0,9,10,1,0,11,12,1,0,13,14,1,0,15,16,
+  	207,0,51,1,0,0,0,2,71,1,0,0,0,4,73,1,0,0,0,6,76,1,0,0,0,8,78,1,0,0,0,
+  	10,81,1,0,0,0,12,84,1,0,0,0,14,105,1,0,0,0,16,107,1,0,0,0,18,109,1,0,
+  	0,0,20,112,1,0,0,0,22,115,1,0,0,0,24,127,1,0,0,0,26,129,1,0,0,0,28,132,
+  	1,0,0,0,30,141,1,0,0,0,32,143,1,0,0,0,34,152,1,0,0,0,36,155,1,0,0,0,38,
+  	164,1,0,0,0,40,184,1,0,0,0,42,186,1,0,0,0,44,194,1,0,0,0,46,197,1,0,0,
+  	0,48,50,3,2,1,0,49,48,1,0,0,0,50,53,1,0,0,0,51,49,1,0,0,0,51,52,1,0,0,
+  	0,52,54,1,0,0,0,53,51,1,0,0,0,54,55,5,0,0,1,55,1,1,0,0,0,56,72,3,4,2,
+  	0,57,72,3,6,3,0,58,72,3,8,4,0,59,72,3,10,5,0,60,72,3,12,6,0,61,72,3,18,
+  	9,0,62,72,3,20,10,0,63,72,3,22,11,0,64,72,3,24,12,0,65,72,3,26,13,0,66,
+  	72,3,28,14,0,67,72,3,38,19,0,68,72,3,32,16,0,69,72,3,44,22,0,70,72,3,
+  	46,23,0,71,56,1,0,0,0,71,57,1,0,0,0,71,58,1,0,0,0,71,59,1,0,0,0,71,60,
+  	1,0,0,0,71,61,1,0,0,0,71,62,1,0,0,0,71,63,1,0,0,0,71,64,1,0,0,0,71,65,
+  	1,0,0,0,71,66,1,0,0,0,71,67,1,0,0,0,71,68,1,0,0,0,71,69,1,0,0,0,71,70,
+  	1,0,0,0,72,3,1,0,0,0,73,74,5,1,0,0,74,75,5,32,0,0,75,5,1,0,0,0,76,77,
+  	5,2,0,0,77,7,1,0,0,0,78,79,5,3,0,0,79,80,5,32,0,0,80,9,1,0,0,0,81,82,
+  	5,4,0,0,82,83,5,32,0,0,83,11,1,0,0,0,84,85,5,5,0,0,85,86,5,34,0,0,86,
+  	88,5,6,0,0,87,89,3,14,7,0,88,87,1,0,0,0,89,90,1,0,0,0,90,88,1,0,0,0,90,
+  	91,1,0,0,0,91,92,1,0,0,0,92,93,5,7,0,0,93,13,1,0,0,0,94,95,5,8,0,0,95,
+  	106,5,32,0,0,96,97,7,0,0,0,97,98,5,34,0,0,98,106,5,32,0,0,99,100,7,1,
+  	0,0,100,101,5,34,0,0,101,106,5,33,0,0,102,103,7,2,0,0,103,104,5,34,0,
+  	0,104,106,3,16,8,0,105,94,1,0,0,0,105,96,1,0,0,0,105,99,1,0,0,0,105,102,
+  	1,0,0,0,106,15,1,0,0,0,107,108,7,3,0,0,108,17,1,0,0,0,109,110,5,34,0,
+  	0,110,111,5,32,0,0,111,19,1,0,0,0,112,113,5,17,0,0,113,114,5,32,0,0,114,
+  	21,1,0,0,0,115,116,5,18,0,0,116,117,5,32,0,0,117,23,1,0,0,0,118,119,7,
+  	0,0,0,119,120,5,34,0,0,120,128,5,32,0,0,121,122,7,1,0,0,122,123,5,34,
+  	0,0,123,128,5,33,0,0,124,125,7,2,0,0,125,126,5,34,0,0,126,128,3,16,8,
+  	0,127,118,1,0,0,0,127,121,1,0,0,0,127,124,1,0,0,0,128,25,1,0,0,0,129,
+  	130,5,34,0,0,130,131,3,30,15,0,131,27,1,0,0,0,132,133,5,34,0,0,133,134,
+  	5,19,0,0,134,135,5,34,0,0,135,136,3,30,15,0,136,29,1,0,0,0,137,142,5,
+  	32,0,0,138,142,5,33,0,0,139,142,3,16,8,0,140,142,5,34,0,0,141,137,1,0,
+  	0,0,141,138,1,0,0,0,141,139,1,0,0,0,141,140,1,0,0,0,142,31,1,0,0,0,143,
+  	144,5,20,0,0,144,146,5,6,0,0,145,147,3,34,17,0,146,145,1,0,0,0,147,148,
+  	1,0,0,0,148,146,1,0,0,0,148,149,1,0,0,0,149,150,1,0,0,0,150,151,5,7,0,
+  	0,151,33,1,0,0,0,152,153,5,32,0,0,153,154,3,36,18,0,154,35,1,0,0,0,155,
+  	159,5,6,0,0,156,158,3,2,1,0,157,156,1,0,0,0,158,161,1,0,0,0,159,157,1,
+  	0,0,0,159,160,1,0,0,0,160,162,1,0,0,0,161,159,1,0,0,0,162,163,5,7,0,0,
+  	163,37,1,0,0,0,164,165,5,21,0,0,165,166,3,40,20,0,166,169,3,36,18,0,167,
+  	168,5,22,0,0,168,170,3,36,18,0,169,167,1,0,0,0,169,170,1,0,0,0,170,39,
+  	1,0,0,0,171,185,3,42,21,0,172,173,3,42,21,0,173,174,5,23,0,0,174,175,
+  	3,40,20,0,175,185,1,0,0,0,176,177,3,42,21,0,177,178,5,24,0,0,178,179,
+  	3,40,20,0,179,185,1,0,0,0,180,181,5,25,0,0,181,182,3,40,20,0,182,183,
+  	5,26,0,0,183,185,1,0,0,0,184,171,1,0,0,0,184,172,1,0,0,0,184,176,1,0,
+  	0,0,184,180,1,0,0,0,185,41,1,0,0,0,186,189,5,34,0,0,187,188,5,19,0,0,
+  	188,190,5,34,0,0,189,187,1,0,0,0,189,190,1,0,0,0,190,191,1,0,0,0,191,
+  	192,5,27,0,0,192,193,3,30,15,0,193,43,1,0,0,0,194,195,5,28,0,0,195,196,
+  	5,32,0,0,196,45,1,0,0,0,197,198,5,29,0,0,198,199,5,32,0,0,199,47,1,0,
+  	0,0,11,51,71,90,105,127,141,148,159,169,184,189
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
 
@@ -220,18 +240,18 @@ VNScriptParser::ScriptContext* VNScriptParser::script() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(45);
+    setState(51);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 8806974) != 0)) {
-      setState(42);
+      ((1ULL << _la) & 17988746814) != 0)) {
+      setState(48);
       statement();
-      setState(47);
+      setState(53);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
-    setState(48);
+    setState(54);
     match(VNScriptParser::EOF);
    
   }
@@ -276,6 +296,14 @@ VNScriptParser::DialogueStmtContext* VNScriptParser::StatementContext::dialogueS
 
 VNScriptParser::NarrateStmtContext* VNScriptParser::StatementContext::narrateStmt() {
   return getRuleContext<VNScriptParser::NarrateStmtContext>(0);
+}
+
+VNScriptParser::CenterTextStmtContext* VNScriptParser::StatementContext::centerTextStmt() {
+  return getRuleContext<VNScriptParser::CenterTextStmtContext>(0);
+}
+
+VNScriptParser::VarDeclContext* VNScriptParser::StatementContext::varDecl() {
+  return getRuleContext<VNScriptParser::VarDeclContext>(0);
 }
 
 VNScriptParser::VarAssignContext* VNScriptParser::StatementContext::varAssign() {
@@ -339,96 +367,110 @@ VNScriptParser::StatementContext* VNScriptParser::statement() {
     exitRule();
   });
   try {
-    setState(63);
+    setState(71);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 1, _ctx)) {
     case 1: {
       enterOuterAlt(_localctx, 1);
-      setState(50);
+      setState(56);
       sceneStart();
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
-      setState(51);
+      setState(57);
       sceneEnd();
       break;
     }
 
     case 3: {
       enterOuterAlt(_localctx, 3);
-      setState(52);
+      setState(58);
       backgroundStmt();
       break;
     }
 
     case 4: {
       enterOuterAlt(_localctx, 4);
-      setState(53);
+      setState(59);
       musicStmt();
       break;
     }
 
     case 5: {
       enterOuterAlt(_localctx, 5);
-      setState(54);
+      setState(60);
       characterDef();
       break;
     }
 
     case 6: {
       enterOuterAlt(_localctx, 6);
-      setState(55);
+      setState(61);
       dialogueStmt();
       break;
     }
 
     case 7: {
       enterOuterAlt(_localctx, 7);
-      setState(56);
+      setState(62);
       narrateStmt();
       break;
     }
 
     case 8: {
       enterOuterAlt(_localctx, 8);
-      setState(57);
-      varAssign();
+      setState(63);
+      centerTextStmt();
       break;
     }
 
     case 9: {
       enterOuterAlt(_localctx, 9);
-      setState(58);
-      propAssign();
+      setState(64);
+      varDecl();
       break;
     }
 
     case 10: {
       enterOuterAlt(_localctx, 10);
-      setState(59);
-      ifStmt();
+      setState(65);
+      varAssign();
       break;
     }
 
     case 11: {
       enterOuterAlt(_localctx, 11);
-      setState(60);
-      choiceStmt();
+      setState(66);
+      propAssign();
       break;
     }
 
     case 12: {
       enterOuterAlt(_localctx, 12);
-      setState(61);
-      savepointStmt();
+      setState(67);
+      ifStmt();
       break;
     }
 
     case 13: {
       enterOuterAlt(_localctx, 13);
-      setState(62);
+      setState(68);
+      choiceStmt();
+      break;
+    }
+
+    case 14: {
+      enterOuterAlt(_localctx, 14);
+      setState(69);
+      savepointStmt();
+      break;
+    }
+
+    case 15: {
+      enterOuterAlt(_localctx, 15);
+      setState(70);
       gotoStmt();
       break;
     }
@@ -495,9 +537,9 @@ VNScriptParser::SceneStartContext* VNScriptParser::sceneStart() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(65);
+    setState(73);
     match(VNScriptParser::T__0);
-    setState(66);
+    setState(74);
     match(VNScriptParser::STRING);
    
   }
@@ -554,7 +596,7 @@ VNScriptParser::SceneEndContext* VNScriptParser::sceneEnd() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(68);
+    setState(76);
     match(VNScriptParser::T__1);
    
   }
@@ -615,9 +657,9 @@ VNScriptParser::BackgroundStmtContext* VNScriptParser::backgroundStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(70);
+    setState(78);
     match(VNScriptParser::T__2);
-    setState(71);
+    setState(79);
     match(VNScriptParser::STRING);
    
   }
@@ -678,9 +720,9 @@ VNScriptParser::MusicStmtContext* VNScriptParser::musicStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(73);
+    setState(81);
     match(VNScriptParser::T__3);
-    setState(74);
+    setState(82);
     match(VNScriptParser::STRING);
    
   }
@@ -703,8 +745,12 @@ tree::TerminalNode* VNScriptParser::CharacterDefContext::ID() {
   return getToken(VNScriptParser::ID, 0);
 }
 
-VNScriptParser::CharacterBodyContext* VNScriptParser::CharacterDefContext::characterBody() {
-  return getRuleContext<VNScriptParser::CharacterBodyContext>(0);
+std::vector<VNScriptParser::CharacterPropContext *> VNScriptParser::CharacterDefContext::characterProp() {
+  return getRuleContexts<VNScriptParser::CharacterPropContext>();
+}
+
+VNScriptParser::CharacterPropContext* VNScriptParser::CharacterDefContext::characterProp(size_t i) {
+  return getRuleContext<VNScriptParser::CharacterPropContext>(i);
 }
 
 
@@ -735,6 +781,7 @@ std::any VNScriptParser::CharacterDefContext::accept(tree::ParseTreeVisitor *vis
 VNScriptParser::CharacterDefContext* VNScriptParser::characterDef() {
   CharacterDefContext *_localctx = _tracker.createInstance<CharacterDefContext>(_ctx, getState());
   enterRule(_localctx, 12, VNScriptParser::RuleCharacterDef);
+  size_t _la = 0;
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -745,15 +792,24 @@ VNScriptParser::CharacterDefContext* VNScriptParser::characterDef() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(76);
+    setState(84);
     match(VNScriptParser::T__4);
-    setState(77);
+    setState(85);
     match(VNScriptParser::ID);
-    setState(78);
+    setState(86);
     match(VNScriptParser::T__5);
-    setState(79);
-    characterBody();
-    setState(80);
+    setState(88); 
+    _errHandler->sync(this);
+    _la = _input->LA(1);
+    do {
+      setState(87);
+      characterProp();
+      setState(90); 
+      _errHandler->sync(this);
+      _la = _input->LA(1);
+    } while ((((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & 32512) != 0));
+    setState(92);
     match(VNScriptParser::T__6);
    
   }
@@ -766,48 +822,56 @@ VNScriptParser::CharacterDefContext* VNScriptParser::characterDef() {
   return _localctx;
 }
 
-//----------------- CharacterBodyContext ------------------------------------------------------------------
+//----------------- CharacterPropContext ------------------------------------------------------------------
 
-VNScriptParser::CharacterBodyContext::CharacterBodyContext(ParserRuleContext *parent, size_t invokingState)
+VNScriptParser::CharacterPropContext::CharacterPropContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-std::vector<VNScriptParser::CharPropStmtContext *> VNScriptParser::CharacterBodyContext::charPropStmt() {
-  return getRuleContexts<VNScriptParser::CharPropStmtContext>();
+tree::TerminalNode* VNScriptParser::CharacterPropContext::STRING() {
+  return getToken(VNScriptParser::STRING, 0);
 }
 
-VNScriptParser::CharPropStmtContext* VNScriptParser::CharacterBodyContext::charPropStmt(size_t i) {
-  return getRuleContext<VNScriptParser::CharPropStmtContext>(i);
+tree::TerminalNode* VNScriptParser::CharacterPropContext::ID() {
+  return getToken(VNScriptParser::ID, 0);
+}
+
+tree::TerminalNode* VNScriptParser::CharacterPropContext::NUMBER() {
+  return getToken(VNScriptParser::NUMBER, 0);
+}
+
+VNScriptParser::BoolValueContext* VNScriptParser::CharacterPropContext::boolValue() {
+  return getRuleContext<VNScriptParser::BoolValueContext>(0);
 }
 
 
-size_t VNScriptParser::CharacterBodyContext::getRuleIndex() const {
-  return VNScriptParser::RuleCharacterBody;
+size_t VNScriptParser::CharacterPropContext::getRuleIndex() const {
+  return VNScriptParser::RuleCharacterProp;
 }
 
-void VNScriptParser::CharacterBodyContext::enterRule(tree::ParseTreeListener *listener) {
+void VNScriptParser::CharacterPropContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<VNScriptListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterCharacterBody(this);
+    parserListener->enterCharacterProp(this);
 }
 
-void VNScriptParser::CharacterBodyContext::exitRule(tree::ParseTreeListener *listener) {
+void VNScriptParser::CharacterPropContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<VNScriptListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitCharacterBody(this);
+    parserListener->exitCharacterProp(this);
 }
 
 
-std::any VNScriptParser::CharacterBodyContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any VNScriptParser::CharacterPropContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<VNScriptVisitor*>(visitor))
-    return parserVisitor->visitCharacterBody(this);
+    return parserVisitor->visitCharacterProp(this);
   else
     return visitor->visitChildren(this);
 }
 
-VNScriptParser::CharacterBodyContext* VNScriptParser::characterBody() {
-  CharacterBodyContext *_localctx = _tracker.createInstance<CharacterBodyContext>(_ctx, getState());
-  enterRule(_localctx, 14, VNScriptParser::RuleCharacterBody);
+VNScriptParser::CharacterPropContext* VNScriptParser::characterProp() {
+  CharacterPropContext *_localctx = _tracker.createInstance<CharacterPropContext>(_ctx, getState());
+  enterRule(_localctx, 14, VNScriptParser::RuleCharacterProp);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -818,18 +882,83 @@ VNScriptParser::CharacterBodyContext* VNScriptParser::characterBody() {
     exitRule();
   });
   try {
-    enterOuterAlt(_localctx, 1);
-    setState(85);
+    setState(105);
     _errHandler->sync(this);
-    _la = _input->LA(1);
-    while (_la == VNScriptParser::T__7
+    switch (_input->LA(1)) {
+      case VNScriptParser::T__7: {
+        enterOuterAlt(_localctx, 1);
+        setState(94);
+        match(VNScriptParser::T__7);
+        setState(95);
+        match(VNScriptParser::STRING);
+        break;
+      }
 
-    || _la == VNScriptParser::ID) {
-      setState(82);
-      charPropStmt();
-      setState(87);
-      _errHandler->sync(this);
-      _la = _input->LA(1);
+      case VNScriptParser::T__8:
+      case VNScriptParser::T__9: {
+        enterOuterAlt(_localctx, 2);
+        setState(96);
+        _la = _input->LA(1);
+        if (!(_la == VNScriptParser::T__8
+
+        || _la == VNScriptParser::T__9)) {
+        _errHandler->recoverInline(this);
+        }
+        else {
+          _errHandler->reportMatch(this);
+          consume();
+        }
+        setState(97);
+        match(VNScriptParser::ID);
+        setState(98);
+        match(VNScriptParser::STRING);
+        break;
+      }
+
+      case VNScriptParser::T__10:
+      case VNScriptParser::T__11: {
+        enterOuterAlt(_localctx, 3);
+        setState(99);
+        _la = _input->LA(1);
+        if (!(_la == VNScriptParser::T__10
+
+        || _la == VNScriptParser::T__11)) {
+        _errHandler->recoverInline(this);
+        }
+        else {
+          _errHandler->reportMatch(this);
+          consume();
+        }
+        setState(100);
+        match(VNScriptParser::ID);
+        setState(101);
+        match(VNScriptParser::NUMBER);
+        break;
+      }
+
+      case VNScriptParser::T__12:
+      case VNScriptParser::T__13: {
+        enterOuterAlt(_localctx, 4);
+        setState(102);
+        _la = _input->LA(1);
+        if (!(_la == VNScriptParser::T__12
+
+        || _la == VNScriptParser::T__13)) {
+        _errHandler->recoverInline(this);
+        }
+        else {
+          _errHandler->reportMatch(this);
+          consume();
+        }
+        setState(103);
+        match(VNScriptParser::ID);
+        setState(104);
+        boolValue();
+        break;
+      }
+
+    default:
+      throw NoViableAltException(this);
     }
    
   }
@@ -842,52 +971,41 @@ VNScriptParser::CharacterBodyContext* VNScriptParser::characterBody() {
   return _localctx;
 }
 
-//----------------- CharPropStmtContext ------------------------------------------------------------------
+//----------------- BoolValueContext ------------------------------------------------------------------
 
-VNScriptParser::CharPropStmtContext::CharPropStmtContext(ParserRuleContext *parent, size_t invokingState)
+VNScriptParser::BoolValueContext::BoolValueContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* VNScriptParser::CharPropStmtContext::ID() {
-  return getToken(VNScriptParser::ID, 0);
+
+size_t VNScriptParser::BoolValueContext::getRuleIndex() const {
+  return VNScriptParser::RuleBoolValue;
 }
 
-tree::TerminalNode* VNScriptParser::CharPropStmtContext::STRING() {
-  return getToken(VNScriptParser::STRING, 0);
-}
-
-tree::TerminalNode* VNScriptParser::CharPropStmtContext::NUMBER() {
-  return getToken(VNScriptParser::NUMBER, 0);
-}
-
-
-size_t VNScriptParser::CharPropStmtContext::getRuleIndex() const {
-  return VNScriptParser::RuleCharPropStmt;
-}
-
-void VNScriptParser::CharPropStmtContext::enterRule(tree::ParseTreeListener *listener) {
+void VNScriptParser::BoolValueContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<VNScriptListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterCharPropStmt(this);
+    parserListener->enterBoolValue(this);
 }
 
-void VNScriptParser::CharPropStmtContext::exitRule(tree::ParseTreeListener *listener) {
+void VNScriptParser::BoolValueContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<VNScriptListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitCharPropStmt(this);
+    parserListener->exitBoolValue(this);
 }
 
 
-std::any VNScriptParser::CharPropStmtContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any VNScriptParser::BoolValueContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<VNScriptVisitor*>(visitor))
-    return parserVisitor->visitCharPropStmt(this);
+    return parserVisitor->visitBoolValue(this);
   else
     return visitor->visitChildren(this);
 }
 
-VNScriptParser::CharPropStmtContext* VNScriptParser::charPropStmt() {
-  CharPropStmtContext *_localctx = _tracker.createInstance<CharPropStmtContext>(_ctx, getState());
-  enterRule(_localctx, 16, VNScriptParser::RuleCharPropStmt);
+VNScriptParser::BoolValueContext* VNScriptParser::boolValue() {
+  BoolValueContext *_localctx = _tracker.createInstance<BoolValueContext>(_ctx, getState());
+  enterRule(_localctx, 16, VNScriptParser::RuleBoolValue);
+  size_t _la = 0;
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -897,40 +1015,17 @@ VNScriptParser::CharPropStmtContext* VNScriptParser::charPropStmt() {
     exitRule();
   });
   try {
-    setState(95);
-    _errHandler->sync(this);
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx)) {
-    case 1: {
-      enterOuterAlt(_localctx, 1);
-      setState(88);
-      match(VNScriptParser::ID);
-      setState(89);
-      match(VNScriptParser::STRING);
-      break;
-    }
+    enterOuterAlt(_localctx, 1);
+    setState(107);
+    _la = _input->LA(1);
+    if (!(_la == VNScriptParser::T__14
 
-    case 2: {
-      enterOuterAlt(_localctx, 2);
-      setState(90);
-      match(VNScriptParser::ID);
-      setState(91);
-      match(VNScriptParser::NUMBER);
-      break;
+    || _la == VNScriptParser::T__15)) {
+    _errHandler->recoverInline(this);
     }
-
-    case 3: {
-      enterOuterAlt(_localctx, 3);
-      setState(92);
-      match(VNScriptParser::T__7);
-      setState(93);
-      match(VNScriptParser::ID);
-      setState(94);
-      match(VNScriptParser::STRING);
-      break;
-    }
-
-    default:
-      break;
+    else {
+      _errHandler->reportMatch(this);
+      consume();
     }
    
   }
@@ -995,9 +1090,9 @@ VNScriptParser::DialogueStmtContext* VNScriptParser::dialogueStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(97);
+    setState(109);
     match(VNScriptParser::ID);
-    setState(98);
+    setState(110);
     match(VNScriptParser::STRING);
    
   }
@@ -1058,10 +1153,213 @@ VNScriptParser::NarrateStmtContext* VNScriptParser::narrateStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(100);
-    match(VNScriptParser::T__8);
-    setState(101);
+    setState(112);
+    match(VNScriptParser::T__16);
+    setState(113);
     match(VNScriptParser::STRING);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- CenterTextStmtContext ------------------------------------------------------------------
+
+VNScriptParser::CenterTextStmtContext::CenterTextStmtContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* VNScriptParser::CenterTextStmtContext::STRING() {
+  return getToken(VNScriptParser::STRING, 0);
+}
+
+
+size_t VNScriptParser::CenterTextStmtContext::getRuleIndex() const {
+  return VNScriptParser::RuleCenterTextStmt;
+}
+
+void VNScriptParser::CenterTextStmtContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<VNScriptListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCenterTextStmt(this);
+}
+
+void VNScriptParser::CenterTextStmtContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<VNScriptListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCenterTextStmt(this);
+}
+
+
+std::any VNScriptParser::CenterTextStmtContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<VNScriptVisitor*>(visitor))
+    return parserVisitor->visitCenterTextStmt(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+VNScriptParser::CenterTextStmtContext* VNScriptParser::centerTextStmt() {
+  CenterTextStmtContext *_localctx = _tracker.createInstance<CenterTextStmtContext>(_ctx, getState());
+  enterRule(_localctx, 22, VNScriptParser::RuleCenterTextStmt);
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(115);
+    match(VNScriptParser::T__17);
+    setState(116);
+    match(VNScriptParser::STRING);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- VarDeclContext ------------------------------------------------------------------
+
+VNScriptParser::VarDeclContext::VarDeclContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* VNScriptParser::VarDeclContext::ID() {
+  return getToken(VNScriptParser::ID, 0);
+}
+
+tree::TerminalNode* VNScriptParser::VarDeclContext::STRING() {
+  return getToken(VNScriptParser::STRING, 0);
+}
+
+tree::TerminalNode* VNScriptParser::VarDeclContext::NUMBER() {
+  return getToken(VNScriptParser::NUMBER, 0);
+}
+
+VNScriptParser::BoolValueContext* VNScriptParser::VarDeclContext::boolValue() {
+  return getRuleContext<VNScriptParser::BoolValueContext>(0);
+}
+
+
+size_t VNScriptParser::VarDeclContext::getRuleIndex() const {
+  return VNScriptParser::RuleVarDecl;
+}
+
+void VNScriptParser::VarDeclContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<VNScriptListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterVarDecl(this);
+}
+
+void VNScriptParser::VarDeclContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<VNScriptListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitVarDecl(this);
+}
+
+
+std::any VNScriptParser::VarDeclContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<VNScriptVisitor*>(visitor))
+    return parserVisitor->visitVarDecl(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+VNScriptParser::VarDeclContext* VNScriptParser::varDecl() {
+  VarDeclContext *_localctx = _tracker.createInstance<VarDeclContext>(_ctx, getState());
+  enterRule(_localctx, 24, VNScriptParser::RuleVarDecl);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    setState(127);
+    _errHandler->sync(this);
+    switch (_input->LA(1)) {
+      case VNScriptParser::T__8:
+      case VNScriptParser::T__9: {
+        enterOuterAlt(_localctx, 1);
+        setState(118);
+        _la = _input->LA(1);
+        if (!(_la == VNScriptParser::T__8
+
+        || _la == VNScriptParser::T__9)) {
+        _errHandler->recoverInline(this);
+        }
+        else {
+          _errHandler->reportMatch(this);
+          consume();
+        }
+        setState(119);
+        match(VNScriptParser::ID);
+        setState(120);
+        match(VNScriptParser::STRING);
+        break;
+      }
+
+      case VNScriptParser::T__10:
+      case VNScriptParser::T__11: {
+        enterOuterAlt(_localctx, 2);
+        setState(121);
+        _la = _input->LA(1);
+        if (!(_la == VNScriptParser::T__10
+
+        || _la == VNScriptParser::T__11)) {
+        _errHandler->recoverInline(this);
+        }
+        else {
+          _errHandler->reportMatch(this);
+          consume();
+        }
+        setState(122);
+        match(VNScriptParser::ID);
+        setState(123);
+        match(VNScriptParser::NUMBER);
+        break;
+      }
+
+      case VNScriptParser::T__12:
+      case VNScriptParser::T__13: {
+        enterOuterAlt(_localctx, 3);
+        setState(124);
+        _la = _input->LA(1);
+        if (!(_la == VNScriptParser::T__12
+
+        || _la == VNScriptParser::T__13)) {
+        _errHandler->recoverInline(this);
+        }
+        else {
+          _errHandler->reportMatch(this);
+          consume();
+        }
+        setState(125);
+        match(VNScriptParser::ID);
+        setState(126);
+        boolValue();
+        break;
+      }
+
+    default:
+      throw NoViableAltException(this);
+    }
    
   }
   catch (RecognitionException &e) {
@@ -1114,7 +1412,7 @@ std::any VNScriptParser::VarAssignContext::accept(tree::ParseTreeVisitor *visito
 
 VNScriptParser::VarAssignContext* VNScriptParser::varAssign() {
   VarAssignContext *_localctx = _tracker.createInstance<VarAssignContext>(_ctx, getState());
-  enterRule(_localctx, 22, VNScriptParser::RuleVarAssign);
+  enterRule(_localctx, 26, VNScriptParser::RuleVarAssign);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1125,9 +1423,9 @@ VNScriptParser::VarAssignContext* VNScriptParser::varAssign() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(103);
+    setState(129);
     match(VNScriptParser::ID);
-    setState(104);
+    setState(130);
     expr();
    
   }
@@ -1185,7 +1483,7 @@ std::any VNScriptParser::PropAssignContext::accept(tree::ParseTreeVisitor *visit
 
 VNScriptParser::PropAssignContext* VNScriptParser::propAssign() {
   PropAssignContext *_localctx = _tracker.createInstance<PropAssignContext>(_ctx, getState());
-  enterRule(_localctx, 24, VNScriptParser::RulePropAssign);
+  enterRule(_localctx, 28, VNScriptParser::RulePropAssign);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1196,13 +1494,13 @@ VNScriptParser::PropAssignContext* VNScriptParser::propAssign() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(106);
+    setState(132);
     match(VNScriptParser::ID);
-    setState(107);
-    match(VNScriptParser::T__9);
-    setState(108);
+    setState(133);
+    match(VNScriptParser::T__18);
+    setState(134);
     match(VNScriptParser::ID);
-    setState(109);
+    setState(135);
     expr();
    
   }
@@ -1227,6 +1525,10 @@ tree::TerminalNode* VNScriptParser::ExprContext::STRING() {
 
 tree::TerminalNode* VNScriptParser::ExprContext::NUMBER() {
   return getToken(VNScriptParser::NUMBER, 0);
+}
+
+VNScriptParser::BoolValueContext* VNScriptParser::ExprContext::boolValue() {
+  return getRuleContext<VNScriptParser::BoolValueContext>(0);
 }
 
 tree::TerminalNode* VNScriptParser::ExprContext::ID() {
@@ -1260,8 +1562,7 @@ std::any VNScriptParser::ExprContext::accept(tree::ParseTreeVisitor *visitor) {
 
 VNScriptParser::ExprContext* VNScriptParser::expr() {
   ExprContext *_localctx = _tracker.createInstance<ExprContext>(_ctx, getState());
-  enterRule(_localctx, 26, VNScriptParser::RuleExpr);
-  size_t _la = 0;
+  enterRule(_localctx, 30, VNScriptParser::RuleExpr);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1271,16 +1572,40 @@ VNScriptParser::ExprContext* VNScriptParser::expr() {
     exitRule();
   });
   try {
-    enterOuterAlt(_localctx, 1);
-    setState(111);
-    _la = _input->LA(1);
-    if (!((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 14686208) != 0))) {
-    _errHandler->recoverInline(this);
-    }
-    else {
-      _errHandler->reportMatch(this);
-      consume();
+    setState(141);
+    _errHandler->sync(this);
+    switch (_input->LA(1)) {
+      case VNScriptParser::STRING: {
+        enterOuterAlt(_localctx, 1);
+        setState(137);
+        match(VNScriptParser::STRING);
+        break;
+      }
+
+      case VNScriptParser::NUMBER: {
+        enterOuterAlt(_localctx, 2);
+        setState(138);
+        match(VNScriptParser::NUMBER);
+        break;
+      }
+
+      case VNScriptParser::T__14:
+      case VNScriptParser::T__15: {
+        enterOuterAlt(_localctx, 3);
+        setState(139);
+        boolValue();
+        break;
+      }
+
+      case VNScriptParser::ID: {
+        enterOuterAlt(_localctx, 4);
+        setState(140);
+        match(VNScriptParser::ID);
+        break;
+      }
+
+    default:
+      throw NoViableAltException(this);
     }
    
   }
@@ -1334,7 +1659,7 @@ std::any VNScriptParser::ChoiceStmtContext::accept(tree::ParseTreeVisitor *visit
 
 VNScriptParser::ChoiceStmtContext* VNScriptParser::choiceStmt() {
   ChoiceStmtContext *_localctx = _tracker.createInstance<ChoiceStmtContext>(_ctx, getState());
-  enterRule(_localctx, 28, VNScriptParser::RuleChoiceStmt);
+  enterRule(_localctx, 32, VNScriptParser::RuleChoiceStmt);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1346,21 +1671,21 @@ VNScriptParser::ChoiceStmtContext* VNScriptParser::choiceStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(113);
-    match(VNScriptParser::T__12);
-    setState(114);
+    setState(143);
+    match(VNScriptParser::T__19);
+    setState(144);
     match(VNScriptParser::T__5);
-    setState(116); 
+    setState(146); 
     _errHandler->sync(this);
     _la = _input->LA(1);
     do {
-      setState(115);
+      setState(145);
       choiceOption();
-      setState(118); 
+      setState(148); 
       _errHandler->sync(this);
       _la = _input->LA(1);
     } while (_la == VNScriptParser::STRING);
-    setState(120);
+    setState(150);
     match(VNScriptParser::T__6);
    
   }
@@ -1414,7 +1739,7 @@ std::any VNScriptParser::ChoiceOptionContext::accept(tree::ParseTreeVisitor *vis
 
 VNScriptParser::ChoiceOptionContext* VNScriptParser::choiceOption() {
   ChoiceOptionContext *_localctx = _tracker.createInstance<ChoiceOptionContext>(_ctx, getState());
-  enterRule(_localctx, 30, VNScriptParser::RuleChoiceOption);
+  enterRule(_localctx, 34, VNScriptParser::RuleChoiceOption);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1425,9 +1750,9 @@ VNScriptParser::ChoiceOptionContext* VNScriptParser::choiceOption() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(122);
+    setState(152);
     match(VNScriptParser::STRING);
-    setState(123);
+    setState(153);
     block();
    
   }
@@ -1481,7 +1806,7 @@ std::any VNScriptParser::BlockContext::accept(tree::ParseTreeVisitor *visitor) {
 
 VNScriptParser::BlockContext* VNScriptParser::block() {
   BlockContext *_localctx = _tracker.createInstance<BlockContext>(_ctx, getState());
-  enterRule(_localctx, 32, VNScriptParser::RuleBlock);
+  enterRule(_localctx, 36, VNScriptParser::RuleBlock);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1493,20 +1818,20 @@ VNScriptParser::BlockContext* VNScriptParser::block() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(125);
+    setState(155);
     match(VNScriptParser::T__5);
-    setState(129);
+    setState(159);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 8806974) != 0)) {
-      setState(126);
+      ((1ULL << _la) & 17988746814) != 0)) {
+      setState(156);
       statement();
-      setState(131);
+      setState(161);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
-    setState(132);
+    setState(162);
     match(VNScriptParser::T__6);
    
   }
@@ -1564,7 +1889,7 @@ std::any VNScriptParser::IfStmtContext::accept(tree::ParseTreeVisitor *visitor) 
 
 VNScriptParser::IfStmtContext* VNScriptParser::ifStmt() {
   IfStmtContext *_localctx = _tracker.createInstance<IfStmtContext>(_ctx, getState());
-  enterRule(_localctx, 34, VNScriptParser::RuleIfStmt);
+  enterRule(_localctx, 38, VNScriptParser::RuleIfStmt);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1576,20 +1901,20 @@ VNScriptParser::IfStmtContext* VNScriptParser::ifStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(134);
-    match(VNScriptParser::T__13);
-    setState(135);
+    setState(164);
+    match(VNScriptParser::T__20);
+    setState(165);
     condition();
-    setState(136);
+    setState(166);
     block();
-    setState(139);
+    setState(169);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == VNScriptParser::T__14) {
-      setState(137);
-      match(VNScriptParser::T__14);
-      setState(138);
+    if (_la == VNScriptParser::T__21) {
+      setState(167);
+      match(VNScriptParser::T__21);
+      setState(168);
       block();
     }
    
@@ -1609,16 +1934,12 @@ VNScriptParser::ConditionContext::ConditionContext(ParserRuleContext *parent, si
   : ParserRuleContext(parent, invokingState) {
 }
 
-std::vector<tree::TerminalNode *> VNScriptParser::ConditionContext::ID() {
-  return getTokens(VNScriptParser::ID);
+VNScriptParser::SimpleConditionContext* VNScriptParser::ConditionContext::simpleCondition() {
+  return getRuleContext<VNScriptParser::SimpleConditionContext>(0);
 }
 
-tree::TerminalNode* VNScriptParser::ConditionContext::ID(size_t i) {
-  return getToken(VNScriptParser::ID, i);
-}
-
-VNScriptParser::ExprContext* VNScriptParser::ConditionContext::expr() {
-  return getRuleContext<VNScriptParser::ExprContext>(0);
+VNScriptParser::ConditionContext* VNScriptParser::ConditionContext::condition() {
+  return getRuleContext<VNScriptParser::ConditionContext>(0);
 }
 
 
@@ -1648,7 +1969,119 @@ std::any VNScriptParser::ConditionContext::accept(tree::ParseTreeVisitor *visito
 
 VNScriptParser::ConditionContext* VNScriptParser::condition() {
   ConditionContext *_localctx = _tracker.createInstance<ConditionContext>(_ctx, getState());
-  enterRule(_localctx, 36, VNScriptParser::RuleCondition);
+  enterRule(_localctx, 40, VNScriptParser::RuleCondition);
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    setState(184);
+    _errHandler->sync(this);
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 9, _ctx)) {
+    case 1: {
+      enterOuterAlt(_localctx, 1);
+      setState(171);
+      simpleCondition();
+      break;
+    }
+
+    case 2: {
+      enterOuterAlt(_localctx, 2);
+      setState(172);
+      simpleCondition();
+      setState(173);
+      match(VNScriptParser::T__22);
+      setState(174);
+      condition();
+      break;
+    }
+
+    case 3: {
+      enterOuterAlt(_localctx, 3);
+      setState(176);
+      simpleCondition();
+      setState(177);
+      match(VNScriptParser::T__23);
+      setState(178);
+      condition();
+      break;
+    }
+
+    case 4: {
+      enterOuterAlt(_localctx, 4);
+      setState(180);
+      match(VNScriptParser::T__24);
+      setState(181);
+      condition();
+      setState(182);
+      match(VNScriptParser::T__25);
+      break;
+    }
+
+    default:
+      break;
+    }
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- SimpleConditionContext ------------------------------------------------------------------
+
+VNScriptParser::SimpleConditionContext::SimpleConditionContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+std::vector<tree::TerminalNode *> VNScriptParser::SimpleConditionContext::ID() {
+  return getTokens(VNScriptParser::ID);
+}
+
+tree::TerminalNode* VNScriptParser::SimpleConditionContext::ID(size_t i) {
+  return getToken(VNScriptParser::ID, i);
+}
+
+VNScriptParser::ExprContext* VNScriptParser::SimpleConditionContext::expr() {
+  return getRuleContext<VNScriptParser::ExprContext>(0);
+}
+
+
+size_t VNScriptParser::SimpleConditionContext::getRuleIndex() const {
+  return VNScriptParser::RuleSimpleCondition;
+}
+
+void VNScriptParser::SimpleConditionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<VNScriptListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSimpleCondition(this);
+}
+
+void VNScriptParser::SimpleConditionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<VNScriptListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSimpleCondition(this);
+}
+
+
+std::any VNScriptParser::SimpleConditionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<VNScriptVisitor*>(visitor))
+    return parserVisitor->visitSimpleCondition(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+VNScriptParser::SimpleConditionContext* VNScriptParser::simpleCondition() {
+  SimpleConditionContext *_localctx = _tracker.createInstance<SimpleConditionContext>(_ctx, getState());
+  enterRule(_localctx, 42, VNScriptParser::RuleSimpleCondition);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1660,21 +2093,21 @@ VNScriptParser::ConditionContext* VNScriptParser::condition() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(141);
+    setState(186);
     match(VNScriptParser::ID);
-    setState(144);
+    setState(189);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == VNScriptParser::T__9) {
-      setState(142);
-      match(VNScriptParser::T__9);
-      setState(143);
+    if (_la == VNScriptParser::T__18) {
+      setState(187);
+      match(VNScriptParser::T__18);
+      setState(188);
       match(VNScriptParser::ID);
     }
-    setState(146);
-    match(VNScriptParser::T__15);
-    setState(147);
+    setState(191);
+    match(VNScriptParser::T__26);
+    setState(192);
     expr();
    
   }
@@ -1724,7 +2157,7 @@ std::any VNScriptParser::SavepointStmtContext::accept(tree::ParseTreeVisitor *vi
 
 VNScriptParser::SavepointStmtContext* VNScriptParser::savepointStmt() {
   SavepointStmtContext *_localctx = _tracker.createInstance<SavepointStmtContext>(_ctx, getState());
-  enterRule(_localctx, 38, VNScriptParser::RuleSavepointStmt);
+  enterRule(_localctx, 44, VNScriptParser::RuleSavepointStmt);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1735,9 +2168,9 @@ VNScriptParser::SavepointStmtContext* VNScriptParser::savepointStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(149);
-    match(VNScriptParser::T__16);
-    setState(150);
+    setState(194);
+    match(VNScriptParser::T__27);
+    setState(195);
     match(VNScriptParser::STRING);
    
   }
@@ -1787,7 +2220,7 @@ std::any VNScriptParser::GotoStmtContext::accept(tree::ParseTreeVisitor *visitor
 
 VNScriptParser::GotoStmtContext* VNScriptParser::gotoStmt() {
   GotoStmtContext *_localctx = _tracker.createInstance<GotoStmtContext>(_ctx, getState());
-  enterRule(_localctx, 40, VNScriptParser::RuleGotoStmt);
+  enterRule(_localctx, 46, VNScriptParser::RuleGotoStmt);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1798,9 +2231,9 @@ VNScriptParser::GotoStmtContext* VNScriptParser::gotoStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(152);
-    match(VNScriptParser::T__17);
-    setState(153);
+    setState(197);
+    match(VNScriptParser::T__28);
+    setState(198);
     match(VNScriptParser::STRING);
    
   }

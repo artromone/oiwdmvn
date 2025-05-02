@@ -33,13 +33,17 @@ public:
 
     virtual std::any visitCharacterDef(VNScriptParser::CharacterDefContext *context) = 0;
 
-    virtual std::any visitCharacterBody(VNScriptParser::CharacterBodyContext *context) = 0;
+    virtual std::any visitCharacterProp(VNScriptParser::CharacterPropContext *context) = 0;
 
-    virtual std::any visitCharPropStmt(VNScriptParser::CharPropStmtContext *context) = 0;
+    virtual std::any visitBoolValue(VNScriptParser::BoolValueContext *context) = 0;
 
     virtual std::any visitDialogueStmt(VNScriptParser::DialogueStmtContext *context) = 0;
 
     virtual std::any visitNarrateStmt(VNScriptParser::NarrateStmtContext *context) = 0;
+
+    virtual std::any visitCenterTextStmt(VNScriptParser::CenterTextStmtContext *context) = 0;
+
+    virtual std::any visitVarDecl(VNScriptParser::VarDeclContext *context) = 0;
 
     virtual std::any visitVarAssign(VNScriptParser::VarAssignContext *context) = 0;
 
@@ -56,6 +60,8 @@ public:
     virtual std::any visitIfStmt(VNScriptParser::IfStmtContext *context) = 0;
 
     virtual std::any visitCondition(VNScriptParser::ConditionContext *context) = 0;
+
+    virtual std::any visitSimpleCondition(VNScriptParser::SimpleConditionContext *context) = 0;
 
     virtual std::any visitSavepointStmt(VNScriptParser::SavepointStmtContext *context) = 0;
 

@@ -43,11 +43,11 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitCharacterBody(VNScriptParser::CharacterBodyContext *ctx) override {
+  virtual std::any visitCharacterProp(VNScriptParser::CharacterPropContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitCharPropStmt(VNScriptParser::CharPropStmtContext *ctx) override {
+  virtual std::any visitBoolValue(VNScriptParser::BoolValueContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -56,6 +56,14 @@ public:
   }
 
   virtual std::any visitNarrateStmt(VNScriptParser::NarrateStmtContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitCenterTextStmt(VNScriptParser::CenterTextStmtContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitVarDecl(VNScriptParser::VarDeclContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -88,6 +96,10 @@ public:
   }
 
   virtual std::any visitCondition(VNScriptParser::ConditionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitSimpleCondition(VNScriptParser::SimpleConditionContext *ctx) override {
     return visitChildren(ctx);
   }
 

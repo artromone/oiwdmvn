@@ -37,17 +37,23 @@ public:
   virtual void enterCharacterDef(VNScriptParser::CharacterDefContext * /*ctx*/) override { }
   virtual void exitCharacterDef(VNScriptParser::CharacterDefContext * /*ctx*/) override { }
 
-  virtual void enterCharacterBody(VNScriptParser::CharacterBodyContext * /*ctx*/) override { }
-  virtual void exitCharacterBody(VNScriptParser::CharacterBodyContext * /*ctx*/) override { }
+  virtual void enterCharacterProp(VNScriptParser::CharacterPropContext * /*ctx*/) override { }
+  virtual void exitCharacterProp(VNScriptParser::CharacterPropContext * /*ctx*/) override { }
 
-  virtual void enterCharPropStmt(VNScriptParser::CharPropStmtContext * /*ctx*/) override { }
-  virtual void exitCharPropStmt(VNScriptParser::CharPropStmtContext * /*ctx*/) override { }
+  virtual void enterBoolValue(VNScriptParser::BoolValueContext * /*ctx*/) override { }
+  virtual void exitBoolValue(VNScriptParser::BoolValueContext * /*ctx*/) override { }
 
   virtual void enterDialogueStmt(VNScriptParser::DialogueStmtContext * /*ctx*/) override { }
   virtual void exitDialogueStmt(VNScriptParser::DialogueStmtContext * /*ctx*/) override { }
 
   virtual void enterNarrateStmt(VNScriptParser::NarrateStmtContext * /*ctx*/) override { }
   virtual void exitNarrateStmt(VNScriptParser::NarrateStmtContext * /*ctx*/) override { }
+
+  virtual void enterCenterTextStmt(VNScriptParser::CenterTextStmtContext * /*ctx*/) override { }
+  virtual void exitCenterTextStmt(VNScriptParser::CenterTextStmtContext * /*ctx*/) override { }
+
+  virtual void enterVarDecl(VNScriptParser::VarDeclContext * /*ctx*/) override { }
+  virtual void exitVarDecl(VNScriptParser::VarDeclContext * /*ctx*/) override { }
 
   virtual void enterVarAssign(VNScriptParser::VarAssignContext * /*ctx*/) override { }
   virtual void exitVarAssign(VNScriptParser::VarAssignContext * /*ctx*/) override { }
@@ -72,6 +78,9 @@ public:
 
   virtual void enterCondition(VNScriptParser::ConditionContext * /*ctx*/) override { }
   virtual void exitCondition(VNScriptParser::ConditionContext * /*ctx*/) override { }
+
+  virtual void enterSimpleCondition(VNScriptParser::SimpleConditionContext * /*ctx*/) override { }
+  virtual void exitSimpleCondition(VNScriptParser::SimpleConditionContext * /*ctx*/) override { }
 
   virtual void enterSavepointStmt(VNScriptParser::SavepointStmtContext * /*ctx*/) override { }
   virtual void exitSavepointStmt(VNScriptParser::SavepointStmtContext * /*ctx*/) override { }

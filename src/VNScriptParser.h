@@ -14,17 +14,20 @@ public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
     T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
-    T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, COMMENT = 19, WS = 20, 
-    STRING = 21, NUMBER = 22, ID = 23
+    T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, T__18 = 19, T__19 = 20, 
+    T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24, T__24 = 25, T__25 = 26, 
+    T__26 = 27, T__27 = 28, T__28 = 29, COMMENT = 30, WS = 31, STRING = 32, 
+    NUMBER = 33, ID = 34
   };
 
   enum {
     RuleScript = 0, RuleStatement = 1, RuleSceneStart = 2, RuleSceneEnd = 3, 
-    RuleBackgroundStmt = 4, RuleMusicStmt = 5, RuleCharacterDef = 6, RuleCharacterBody = 7, 
-    RuleCharPropStmt = 8, RuleDialogueStmt = 9, RuleNarrateStmt = 10, RuleVarAssign = 11, 
-    RulePropAssign = 12, RuleExpr = 13, RuleChoiceStmt = 14, RuleChoiceOption = 15, 
-    RuleBlock = 16, RuleIfStmt = 17, RuleCondition = 18, RuleSavepointStmt = 19, 
-    RuleGotoStmt = 20
+    RuleBackgroundStmt = 4, RuleMusicStmt = 5, RuleCharacterDef = 6, RuleCharacterProp = 7, 
+    RuleBoolValue = 8, RuleDialogueStmt = 9, RuleNarrateStmt = 10, RuleCenterTextStmt = 11, 
+    RuleVarDecl = 12, RuleVarAssign = 13, RulePropAssign = 14, RuleExpr = 15, 
+    RuleChoiceStmt = 16, RuleChoiceOption = 17, RuleBlock = 18, RuleIfStmt = 19, 
+    RuleCondition = 20, RuleSimpleCondition = 21, RuleSavepointStmt = 22, 
+    RuleGotoStmt = 23
   };
 
   explicit VNScriptParser(antlr4::TokenStream *input);
@@ -51,10 +54,12 @@ public:
   class BackgroundStmtContext;
   class MusicStmtContext;
   class CharacterDefContext;
-  class CharacterBodyContext;
-  class CharPropStmtContext;
+  class CharacterPropContext;
+  class BoolValueContext;
   class DialogueStmtContext;
   class NarrateStmtContext;
+  class CenterTextStmtContext;
+  class VarDeclContext;
   class VarAssignContext;
   class PropAssignContext;
   class ExprContext;
@@ -63,6 +68,7 @@ public:
   class BlockContext;
   class IfStmtContext;
   class ConditionContext;
+  class SimpleConditionContext;
   class SavepointStmtContext;
   class GotoStmtContext; 
 
@@ -94,6 +100,8 @@ public:
     CharacterDefContext *characterDef();
     DialogueStmtContext *dialogueStmt();
     NarrateStmtContext *narrateStmt();
+    CenterTextStmtContext *centerTextStmt();
+    VarDeclContext *varDecl();
     VarAssignContext *varAssign();
     PropAssignContext *propAssign();
     IfStmtContext *ifStmt();
@@ -174,7 +182,8 @@ public:
     CharacterDefContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *ID();
-    CharacterBodyContext *characterBody();
+    std::vector<CharacterPropContext *> characterProp();
+    CharacterPropContext* characterProp(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -185,29 +194,14 @@ public:
 
   CharacterDefContext* characterDef();
 
-  class  CharacterBodyContext : public antlr4::ParserRuleContext {
+  class  CharacterPropContext : public antlr4::ParserRuleContext {
   public:
-    CharacterBodyContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    CharacterPropContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<CharPropStmtContext *> charPropStmt();
-    CharPropStmtContext* charPropStmt(size_t i);
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  CharacterBodyContext* characterBody();
-
-  class  CharPropStmtContext : public antlr4::ParserRuleContext {
-  public:
-    CharPropStmtContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *ID();
     antlr4::tree::TerminalNode *STRING();
+    antlr4::tree::TerminalNode *ID();
     antlr4::tree::TerminalNode *NUMBER();
+    BoolValueContext *boolValue();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -216,7 +210,21 @@ public:
    
   };
 
-  CharPropStmtContext* charPropStmt();
+  CharacterPropContext* characterProp();
+
+  class  BoolValueContext : public antlr4::ParserRuleContext {
+  public:
+    BoolValueContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  BoolValueContext* boolValue();
 
   class  DialogueStmtContext : public antlr4::ParserRuleContext {
   public:
@@ -248,6 +256,39 @@ public:
   };
 
   NarrateStmtContext* narrateStmt();
+
+  class  CenterTextStmtContext : public antlr4::ParserRuleContext {
+  public:
+    CenterTextStmtContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *STRING();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  CenterTextStmtContext* centerTextStmt();
+
+  class  VarDeclContext : public antlr4::ParserRuleContext {
+  public:
+    VarDeclContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *ID();
+    antlr4::tree::TerminalNode *STRING();
+    antlr4::tree::TerminalNode *NUMBER();
+    BoolValueContext *boolValue();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  VarDeclContext* varDecl();
 
   class  VarAssignContext : public antlr4::ParserRuleContext {
   public:
@@ -288,6 +329,7 @@ public:
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *STRING();
     antlr4::tree::TerminalNode *NUMBER();
+    BoolValueContext *boolValue();
     antlr4::tree::TerminalNode *ID();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -368,6 +410,22 @@ public:
   public:
     ConditionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    SimpleConditionContext *simpleCondition();
+    ConditionContext *condition();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  ConditionContext* condition();
+
+  class  SimpleConditionContext : public antlr4::ParserRuleContext {
+  public:
+    SimpleConditionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
     std::vector<antlr4::tree::TerminalNode *> ID();
     antlr4::tree::TerminalNode* ID(size_t i);
     ExprContext *expr();
@@ -379,7 +437,7 @@ public:
    
   };
 
-  ConditionContext* condition();
+  SimpleConditionContext* simpleCondition();
 
   class  SavepointStmtContext : public antlr4::ParserRuleContext {
   public:

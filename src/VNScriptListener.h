@@ -35,17 +35,23 @@ public:
   virtual void enterCharacterDef(VNScriptParser::CharacterDefContext *ctx) = 0;
   virtual void exitCharacterDef(VNScriptParser::CharacterDefContext *ctx) = 0;
 
-  virtual void enterCharacterBody(VNScriptParser::CharacterBodyContext *ctx) = 0;
-  virtual void exitCharacterBody(VNScriptParser::CharacterBodyContext *ctx) = 0;
+  virtual void enterCharacterProp(VNScriptParser::CharacterPropContext *ctx) = 0;
+  virtual void exitCharacterProp(VNScriptParser::CharacterPropContext *ctx) = 0;
 
-  virtual void enterCharPropStmt(VNScriptParser::CharPropStmtContext *ctx) = 0;
-  virtual void exitCharPropStmt(VNScriptParser::CharPropStmtContext *ctx) = 0;
+  virtual void enterBoolValue(VNScriptParser::BoolValueContext *ctx) = 0;
+  virtual void exitBoolValue(VNScriptParser::BoolValueContext *ctx) = 0;
 
   virtual void enterDialogueStmt(VNScriptParser::DialogueStmtContext *ctx) = 0;
   virtual void exitDialogueStmt(VNScriptParser::DialogueStmtContext *ctx) = 0;
 
   virtual void enterNarrateStmt(VNScriptParser::NarrateStmtContext *ctx) = 0;
   virtual void exitNarrateStmt(VNScriptParser::NarrateStmtContext *ctx) = 0;
+
+  virtual void enterCenterTextStmt(VNScriptParser::CenterTextStmtContext *ctx) = 0;
+  virtual void exitCenterTextStmt(VNScriptParser::CenterTextStmtContext *ctx) = 0;
+
+  virtual void enterVarDecl(VNScriptParser::VarDeclContext *ctx) = 0;
+  virtual void exitVarDecl(VNScriptParser::VarDeclContext *ctx) = 0;
 
   virtual void enterVarAssign(VNScriptParser::VarAssignContext *ctx) = 0;
   virtual void exitVarAssign(VNScriptParser::VarAssignContext *ctx) = 0;
@@ -70,6 +76,9 @@ public:
 
   virtual void enterCondition(VNScriptParser::ConditionContext *ctx) = 0;
   virtual void exitCondition(VNScriptParser::ConditionContext *ctx) = 0;
+
+  virtual void enterSimpleCondition(VNScriptParser::SimpleConditionContext *ctx) = 0;
+  virtual void exitSimpleCondition(VNScriptParser::SimpleConditionContext *ctx) = 0;
 
   virtual void enterSavepointStmt(VNScriptParser::SavepointStmtContext *ctx) = 0;
   virtual void exitSavepointStmt(VNScriptParser::SavepointStmtContext *ctx) = 0;
